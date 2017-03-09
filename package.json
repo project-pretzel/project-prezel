@@ -4,19 +4,25 @@
   "description": "Greenfield Project for HackReactor",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha --reporter spec spec/*.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Clarkbaum/project-pretzel.git"
+    "url": "git+https://github.com/project-pretzel/project-pretzel.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Clarkbaum/project-pretzel/issues"
+    "url": "https://github.com/project-pretzel/project-pretzel/issues"
   },
-  "homepage": "https://github.com/Clarkbaum/project-pretzel#readme",
+  "homepage": "https://github.com/project-pretzel/project-pretzel#readme",
   "dependencies": {
-    "express": "^4.15.2"
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {
+    "chai": "*",
+    "mocha": "*"
   }
 }
