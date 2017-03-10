@@ -6,7 +6,7 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec spec/*.js silent lint",
     "start": "./node_modules/.bin/nodemon server/server.js --ignore public/",
-    "lint": "./node_modules/.bin/eslint --config=/.eslintrc.js *.js"
+    "lint": "./node_modules/.bin/eslint --config=/.eslintrc.js **/*.js"
   },
   "repository": {
     "type": "git",
