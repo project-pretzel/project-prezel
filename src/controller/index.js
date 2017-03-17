@@ -29,6 +29,7 @@ module.exports = {
       var params = [req.body.googleid, req.body.name, req.body.email, req.body.img];
       model.users.post(params, function(err, results) {
         if (err) { console.log("err users post", err);}
+        console.log(results);
         res.sendStatus(201);
       });
     }

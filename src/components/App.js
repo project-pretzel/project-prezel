@@ -9,7 +9,6 @@ export default class App extends React.Component {
     return(
       <div>
       <Link to="/test"> Click me </Link>
-        <Log />
         <Word />
       </div>
     );

@@ -35,6 +35,7 @@ module.exports = {
     post: function (params, callback) {
       // create a user
       // expect params to be {googleid: '', name: '', email: '', img: ''}
+      console.log('>>>>>>>>>>>>>>>', params);
       var queryStr = 'insert into users(googleid, name, email, img) values (?, ?, ?, ?)';
       db.dbConnection.query(queryStr, params, function(err, results) {
         callback(err, results);
