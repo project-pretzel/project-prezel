@@ -6,31 +6,6 @@ import ReactFauxDOM from 'react-faux-dom';
 import scale from 'd3-scale';
 import trends from '../data/trends.js';
 
-<<<<<<< HEAD
-var counts = [];
-var topic= '';
-
-//This is breaking the code for some reason.  The error is:
-/**** 
-
-/home/nathan/hackreactor/project-pretzel/src/components/Word.js:45
-for (var i = _trends2.default.length + 10; i > 10; i--) {                             ^
-
-TypeError: Cannot read property 'length' of undefined at Object.<anonymous> 
-(/home/nathan/hackreactor/project-pretzel/src/components/Word.js:11:14)
-*****/
-/*for (var i = trends.length+10; i > 10; i--) {
-  counts.push(i);
-}*/
-
-for (var i = trends.length+10; i > 10; i--) {
-  counts.push(i);
-}
-//TEMP FIX
-=======
-
->>>>>>> reactor of d3 to prepare for data input
-
 export default class Word extends React.Component {
   getInitialState() {
     return {
@@ -40,10 +15,10 @@ export default class Word extends React.Component {
 
  render() {
   var counts = [];
-var topic= '';
-for (var i = 30; i > 10; i--) {
-  counts.push(i);
-}
+  var topic= '';
+  for (var i = 30; i > 10; i--) {
+    counts.push(i);
+  }
   
   var mouseOver = this.state;
   //var self = this;
@@ -106,7 +81,7 @@ for (var i = 30; i > 10; i--) {
             "fill":"white", 
             "font-family":"Oswald, sans-serif",
             "font-size": "16px"
-        )
+        })
         .on('click', (d) => {topic = d.name; console.log('click', d.name)});
 
   function processData(data) {
