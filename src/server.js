@@ -29,6 +29,14 @@ app.set('views', path.join(__dirname, 'views'));
 // define the folder that will be used for static assets
 app.use(Express.static(path.join(__dirname, 'static')));
 app.use(bodyparser.json());
+app.use(function(req, res, next) {
+  res.setHeader('access-control-allow-origin', '*');
+  res.setHeader('access-control-allow-methods', 'POST, GET, OPTIONS');
+  res.setHeader('access-control-allow-headers', 'x-parse-application-id, x-parse-rest-api-key, Content-Type, Accept');
+
+  //res.setHeader('Content-Type', 'application/json');
+  next();
+});
 
 app.get('/messages', controller.messages.get);
 app.post('/messages', controller.messages.post);
@@ -38,9 +46,8 @@ app.post('/users', controller.users.post);
 // universal routing and rendering
 app.get('*', (req, res) => {
   match(
-    { routes, location: req.url },
+    { routes: routes, location: req.url },
     (err, redirectLocation, renderProps) => {
-
       // in case of error display the error message
       if (err) {
         return res.status(500).send(err.message);
@@ -80,7 +87,7 @@ request.get('https://trends.google.com/trends/hottrends/visualize/internal/data'
     /*top20Trends.forEach(function(current, index) {
       request.get('https://news.google.com/news?cf=all&hl=en&pz=1&&q='+ current +'&ned=us&output=rss', function(req, res) {
         var feed = parser.toJson(res.body, options);
-     //   console.dir(feed.rss);
+        //console.dir(feed.rss);
       });
     })*/;
   } else {

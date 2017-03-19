@@ -36,8 +36,9 @@ export default class Word extends React.Component {
     svg.style.setProperty('height', 700);
 
   const svg1 = d3.select(svg).append('svg')
-        .attr('width', diameter)
-        .attr('height', diameter)
+          .attr('width', diameter)
+          .attr('height', diameter)
+          .on('click', function(d, i){console.log('button clicked', d, i)});
 
   const bubble = d3.layout.pack()
         //.sort(null)
@@ -47,6 +48,8 @@ export default class Word extends React.Component {
          return -(a.value - b.value)
         })
         .padding(2);
+        
+        //between circles
 
   // generate data with calculated layout values
   const nodes = bubble.nodes(processData(json))
