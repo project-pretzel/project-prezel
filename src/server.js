@@ -95,17 +95,16 @@ var getRSSFeeds = function(callback) { request.get('https://trends.google.com/tr
         object: true,
         sanitize: true,
         trim: true
-      }
+      };
 
-    top20Trends.forEach(function(current, index) {
-      request.get('https://news.google.com/news?cf=all&hl=en&pz=1&&q='+ current +'&ned=us&output=rss', function(req, res) {
-        var feed = parser.toJson(res.body, options);
+      top20Trends.forEach(function(current, index) {
+        request.get('https://news.google.com/news?cf=all&hl=en&pz=1&&q='+ current +'&ned=us&output=rss', function(req, res) {
+          var feed = parser.toJson(res.body, options);
+        });
       });
-    });
-  } else {
-    console.error(res.error);
-  };
-});
+    }
+  });
+};
 
 
 
@@ -118,9 +117,10 @@ app.post('/users', controller.users.post);
 // start the server
 const port = process.env.PORT || 3000;
 const env = process.env.NODE_ENV || 'production';
+
 server.listen(port, err => {
   if (err) {
-    return console.error(err);
+    console.error(err);
   }
   console.info(`Server running on http://localhost:${port} [${env}]`);
 });
