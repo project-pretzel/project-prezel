@@ -5,16 +5,7 @@ var trends = ['Nikkis butt', 'Kims butt' ]; //need a default value I think or th
 import request from 'request';
 
 
-var getTop20Trends = function(callback) {
-  request.get('https://trends.google.com/trends/hottrends/visualize/internal/data', function(err, response, data) {
-    if (err) {
-      callback(err, null);
-    } else {
-      data = JSON.parse(response.body).united_states;
-      callback(null, data);
-    }
-  });
-};
+
 
 
 export default trends;
