@@ -1,9 +1,13 @@
 
-import axios from 'axios';
+import getTop20Trends from '../server';
 
-var trends = ['Nikkis butt', 'Kims butt' ]; //need a default value I think or the front page breaks
-import request from 'request';
+var trends;
 
+// getTop20Trends(error, data) {
+//   trends = data;
+// };
+
+console.log(getTop20Trends)
 
 
 
