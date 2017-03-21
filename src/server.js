@@ -46,16 +46,16 @@ app.post('/results', controller.results.post);
 app.get('/results', controller.results.get);
 
 app.get('/rss', (req, res) => {
-  var options = {
-    object: true,
-    sanitize: true,
-    trim: true
-  };
-  request.get('https://news.google.com/news?cf=all&hl=en&pz=1&&q='+ current +'&ned=us&output=rss', function(req, res) {
-    if (res.body) {
-      console.log(res.body)
-      res.send(res.body);
-      // return parser.toJson(res.body, options);
+  request.get('https://news.google.com/news?cf=all&hl=en&pz=1&&q='+ 'trump' +'&ned=us&output=rss', function(request, response) {
+    if (response.body) {
+      var options = {
+        object: true,
+        sanitize: true,
+        trim: true
+      };
+      console.log('response.body', response.body)
+      // res.send(JSON.stringify(response.body));
+      res.send(response.body);
     } else {
       console.error(req);
     }
@@ -63,11 +63,9 @@ app.get('/rss', (req, res) => {
 });
 
 app.get('/trends', (req, res) => {
-  console.log('i got a request');
   request.get('https://trends.google.com/trends/hottrends/visualize/internal/data', function(request, response, data) {
     if (response.body) {
       var top20Trends = JSON.parse(response.body).united_states; // getting top 20 US google trends
-      console.log(top20Trends);
       res.send(response.body);
     } else {
       console.error(res.error);

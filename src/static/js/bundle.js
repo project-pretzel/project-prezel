@@ -30435,11 +30435,15 @@ var Chat = function (_React$Component) {
       var _this3 = this;
 
       fetch('http://127.0.0.1:3000/rss').then(function (res) {
-        console.log(res.json());
-        return res.json();
+        console.log('this is the res line 85', res);
+        return res.body;
       }).then(function (json) {
         _this3.setState({ results: json });
+      }).catch(function (error) {
+        console.error(error);
       });
+      console.log('chat.js line 94');
+      this.renderSearch.bind(this)();
     }
   }, {
     key: 'render',
@@ -30449,7 +30453,7 @@ var Chat = function (_React$Component) {
         padding: '3px 3px',
         'background-color': 'rgba(144, 148, 156, 0.28)'
       };
-
+      //this.renderSearch();
       return _react2.default.createElement(
         _reactCellblock.Grid,
         null,
@@ -30459,14 +30463,13 @@ var Chat = function (_React$Component) {
           _react2.default.createElement(
             'h4',
             null,
-            'Results'
+            'RSS feed'
           ),
           _react2.default.createElement(
             'div',
-            { id: 'results', style: style },
-            'Search Results!',
-            this.state.results.map(function (result, i) {
-              return _react2.default.createElement(Results, { result: result, key: i });
+            { id: 'results', style: style, onLoad: this.renderSearch.call(this) },
+            this.state.results.forEach(function (result, i) {
+              return _react2.default.createElement(Result, { result: result, key: i });
             })
           )
         ),

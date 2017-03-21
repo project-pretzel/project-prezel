@@ -32,7 +32,7 @@ export default class Chat extends React.Component {
       var googleToken = JSON.parse(jwt); //pass the googleToken to the log component to parse
     } catch(e) {
       alert(e); // error in the above string (in this case, yes)!
-    } 
+    }
 
     this.state = {
       loggedIn: false
@@ -41,8 +41,8 @@ export default class Chat extends React.Component {
     if(googleToken) {
       username = googleToken.data.given_name;
     }
-      
-     
+
+
     //i want to post to database when clicked
     fetch('http://127.0.0.1:3000/messages', {
       method: 'POST',
@@ -82,12 +82,17 @@ export default class Chat extends React.Component {
   renderSearch(){
     fetch('http://127.0.0.1:3000/rss')
     .then(res => {
-      console.log(res.json())
-      return res.json();
+      console.log('this is the res line 85', res)
+      return res.body;
     })
     .then(json => {
       this.setState({results: json})
     })
+    .catch(error => {
+      console.error(error);
+    })
+    console.log('chat.js line 94')
+    this.renderSearch.bind(this)();
   };
 
   render() {
@@ -96,15 +101,14 @@ export default class Chat extends React.Component {
       padding: '3px 3px',
       'background-color': 'rgba(144, 148, 156, 0.28)'
     }
-
+    //this.renderSearch();
     return(
       <Grid>
         <Column width="3/5">
-          <h4>Results</h4>
-          <div id="results" style={style}>
-            Search Results!
-            {this.state.results.map((result, i) => {
-              return <Results result={result} key={i}/>;
+          <h4>RSS feed</h4>
+          <div id="results" style={style} onLoad={this.renderSearch.call(this)}>
+            {this.state.results.forEach((result, i) => {
+              return <Result result={result} key={i}/>;
             })}
           </div>
         </Column>
